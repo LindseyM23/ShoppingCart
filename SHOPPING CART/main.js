@@ -1,3 +1,4 @@
+// calling all elements from html to javascript 
 let openShopping = document.querySelector('.shopping');
 let closeShopping = document.querySelector('.closeShopping');
 let list = document.querySelector('.list');
@@ -6,14 +7,14 @@ let body = document.querySelector('body');
 let total = document.querySelector('.total');
 let quantity = document.querySelector('.quantity');
 
-
+// controls the visibility of the shopping cart, using the event listener on the item cart 
 openShopping.addEventListener('click', () => {
 body.classList.add('active');
 })
 closeShopping.addEventListener('click', ()=>{
     body.classList.remove('active');
 })
-
+// array of objects used inside the initial page and the shopping cart
 let products = [
     {
         id:1,
@@ -45,7 +46,7 @@ let products = [
         
     }
 ];
-
+// this fucntion is used to iterate hrough the array of products and append them within the list in hmtl
 let listCards=[];
 function iniApp(){
     products.forEach((value,key)=>{
@@ -62,7 +63,7 @@ function iniApp(){
 }
 
 iniApp();
-
+// this function is used to add the items inside the qauntity and also update the quanitity of the product
 function addToCart(key){
     if(listCards[key]== null){
         listCards[key] = {...products[key],quantity:1}
@@ -72,6 +73,7 @@ function addToCart(key){
         reloadCart();
 }
 
+// function is responsible for updating and displaying the contents of the shopping cart on the web page.
 function reloadCart(){
     listCard.innerHTML = ``;
     let count = 0;
@@ -110,7 +112,7 @@ newDiv.innerHTML=`
     total.innerText = totalPrice.toLocaleString();
     quantity.innerText = count;
 }
-
+// function is responsible for updating the quantity of a product in the shopping cart and handling the removal of items if their quantity reaches zero. 
 function changeQuantity(key,quantity){
     if(quantity == 0){
         delete listCards[key];
